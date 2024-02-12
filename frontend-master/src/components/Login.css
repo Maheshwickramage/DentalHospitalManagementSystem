@@ -1,0 +1,135 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  font-family: "Inter";
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login__form > h1 {
+  font-size: 35px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  letter-spacing: -1px;
+}
+
+.login__form > input {
+  min-width: 380px;
+  padding: 20px 0;
+  padding-left: 15px;
+  margin-bottom: 10px;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  font-family: "Inter";
+  border-radius: 2px;
+  font-size: 15px;
+}
+
+.submit__btn {
+  padding: 17px 30px;
+  margin-top: 10px;
+  background: black;
+  border: none;
+  color: white;
+  font-size: 14px;
+  font-family: "Inter";
+  border-radius: 3px;
+}
+
+.main{ 
+
+  min-height :100vh;
+  display : flex;
+  align-items:center;
+  background-image : url("./background1.jpg");
+  background-position: center;
+  background-size: cover;
+  
+  }
+
+  body {
+    background-image: url('D:\Project_HMS\dhms\frontend-master\src\components\background1.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+   
+  }
+  
+  .my-form {
+    width: 300px; /* Set the width of the form */
+    margin:  auto; /* Center the form horizontally */
+    display: block; /* Ensure the button takes up the full width */
+    padding: 10px; /* Add padding to the inputs */
+   
+  }
+  .my-input {
+    width: 100%;
+    font-size: 18px; /* Increase the font size */
+    padding: 12px; /* Increase the padding */
+    margin: 10px 0;
+  }
+  .my-button {
+    display: block; /* Ensure the button takes up the full width */
+    width: 100%; /* Set the width of the button to 100% of its container */
+    padding: 10px; /* Add padding to the button */
+  }
+
+  .button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* This makes it take the full height of the viewport */
+    background-color: #f0f0f0; /* Optional background color for better visibility */
+  }
+  
+  /* Your CSS file (e.g., styles.css) */
+/* Your CSS file (e.g., styles.css) */
+.card {
+ 
+  border: 1px solid #ccc;
+  padding: 50px;
+  margin: 50px;
+  border-radius: 0; /* Set border-radius to 0 for a rectangle shape */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex; /* Use flexbox to control button position */
+  justify-content: center; /* Center the button horizontally */
+  align-items: center; /* Center the button vertically */
+}
+
+
+
+.hospital-button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 400px; /* Set the width of the button */
+}
+
+.patient-button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 400px; /* Set the width of the button */
+}

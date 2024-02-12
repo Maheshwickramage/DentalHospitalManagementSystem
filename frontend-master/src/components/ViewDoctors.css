@@ -1,0 +1,55 @@
+.doctor-item {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .doctor-name {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .doctor-info {
+    font-size: 16px;
+    color: #777;
+  }
+  
+  .edit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .edit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .delete-button:hover {
+    background-color: #b02a37;
+  }
+  .main{ 
+
+    min-height :100vh;
+    display : flex;
+    align-items:center;
+    background-image : url("./background1.jpg");
+    background-position: center;
+    background-size: cover;
+    
+    }
+
+ .fon{
+  color: #fff;
+
+    }
