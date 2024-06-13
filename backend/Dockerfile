@@ -6,7 +6,6 @@ WORKDIR /usr/src/app
 
 #copy package.json file to the working directory
 COPY package*.json ./
-COPY package-lock.json .
 
 #install dependecies
 RUN npm install
@@ -18,7 +17,7 @@ COPY . .
 RUN npm rebuild bcrypt --build-from-source
 
 #expose the port the app runs in
-EXPOSE 3005
+EXPOSE 8080
 
 #command to run the application
 CMD ["node", "src/server.js"]
