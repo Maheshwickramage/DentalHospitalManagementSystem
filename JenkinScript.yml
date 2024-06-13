@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('SCM checkout') {
+            steps {
+                git(url: 'https://github.com/Maheshwickramage/DentalHospitalManagementSystem.git', branch: 'main')
+            }
+        }
+   
+        stage('Build frontend docker Image') {
+            steps {
+                script {
+                    dir('frontend-master') {
+                        sh 'docker build -t react-app:latest .'
+                    }
+                }
+            }
+        }
+       
+        stage('Build backend docker Image') {
+            steps {
+                script {
+                    dir('backend') {
+                        sh 'docker build -t node-app:latest .'
+                    }
+                }
+            }
+        }
+       
+        stage('Run frontend and backend') {
+            steps {
+                script {
+                    dir('backend') {
+                        sh 'docker run -p 3005:3005 node-app:latest'
+                    }
+                    dir('frontend-master') {
+                        sh 'docker run -p 3000:3000 react-app:latest'
+                    }
+                }
+            }
+        }
+    }
+}
