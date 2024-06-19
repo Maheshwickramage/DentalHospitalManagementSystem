@@ -7,37 +7,44 @@ pipeline {
                 git(url: 'https://github.com/Maheshwickramage/DentalHospitalManagementSystem.git', branch: 'main')
             }
         }
-   
+    
         stage('Build frontend docker Image') {
             steps {
                 script {
                     dir('frontend-master') {
-                        sh 'docker build -t react-app:latest .'
+                        sh 'docker build -t drashanamahesh/react-app:latest .'
                     }
                 }
             }
         }
-       
+        
         stage('Build backend docker Image') {
             steps {
                 script {
                     dir('backend') {
-                        sh 'docker build -t node-app:latest .'
+                        sh 'docker build -t drashanamahesh/node-app:latest .'
                     }
                 }
             }
         }
-       
-        stage('Run frontend and backend') {
+        
+        stage('Log into DockerHub') {
             steps {
-                script {
-                    dir('backend') {
-                        sh 'docker run -p 3005:3005 node-app:latest'
-                    }
-                    dir('frontend-master') {
-                        sh 'docker run -p 3000:3000 react-app:latest'
-                    }
+                
+                withCredentials([string(credentialsId: 'dockerhubPass', variable: 'dockerhubPassword')]) {
+                    sh 'docker login -u drashanamahesh -p ${dockerhubPassword}'
+                    
                 }
+
+            }
+        }
+        stage('Upload Docker Images into dockerhub') {
+            steps {
+               
+                    sh 'docker push drashanamahesh/react-app:latest'
+                    sh 'docker push drashanamahesh/node-app:latest'
+                    
+
             }
         }
     }
