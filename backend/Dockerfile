@@ -1,35 +1,23 @@
-# Use a smaller base image for the final build
-FROM node:20-alpine AS builder
+#use an official Node.js runtime as a parent image
+FROM node:20
 
-# Set the working directory in the container
+#set the working directory in the container 
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
+#copy package.json file to the working directory
 COPY package*.json ./
 
-# Install dependencies
+#install dependecies
 RUN npm install
 
-# Copy all the files to the working directory
+#copy all the files to the container
 COPY . .
 
-# Rebuild native modules (if necessary)
+# Rebuild native modules
 RUN npm rebuild bcrypt --build-from-source
 
-# Use a smaller base image for the final build
-FROM node:20-alpine
-
-# Set the working directory in the container
-WORKDIR /usr/src/app
-
-# Copy only the necessary files from the builder stage
-COPY --from=builder /usr/src/app .
-
-# Install only production dependencies
-RUN npm install --production
-
-# Expose the port the app runs on
+#expose the port the app runs in
 EXPOSE 8080
 
-# Command to run the application
+#command to run the application
 CMD ["node", "src/server.js"]
