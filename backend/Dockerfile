@@ -13,8 +13,7 @@ RUN npm install
 #copy all the files to the container
 COPY . .
 
-# Rebuild native modules
-RUN npm rebuild bcrypt --build-from-source
+
 
 #expose the port the app runs in
 EXPOSE 8080
