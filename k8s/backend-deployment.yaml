@@ -17,12 +17,10 @@ spec:
         image: drashanamahesh/node-app:latest
         ports:
         - containerPort: 5000
-        env:
-        - name: MONGO_URI
-          valueFrom:
-            secretKeyRef:
-              name: mongodb-atlas-secret
-              key: mongodb+srv://darshanamahesh1600:RUYbGfimoTt7K5CZ@cluster0.8rfeoyy.mongodb.net/dhms
+        envFrom:
+        - secretRef:
+            name: backend-env-secret
+---
 apiVersion: v1
 kind: Service
 metadata:
