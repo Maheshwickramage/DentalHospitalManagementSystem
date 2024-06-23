@@ -1,11 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-deployment
-  labels:
-    app: backend
+  name: backend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: backend
@@ -15,7 +13,25 @@ spec:
         app: backend
     spec:
       containers:
-      - name: node-app
+      - name: backend
         image: drashanamahesh/node-app:latest
         ports:
         - containerPort: 5000
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-atlas-secret
+              key: mongodb+srv://darshanamahesh1600:ZgZJoHaDGU8WnyY2@cluster0.8rfeoyy.mongodb.net/
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: backend
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000
