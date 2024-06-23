@@ -22,8 +22,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: mongodb-atlas-secret
-              key: mongodb+srv://darshanamahesh1600:ZgZJoHaDGU8WnyY2@cluster0.8rfeoyy.mongodb.net/
----
+              key: mongodb+srv://darshanamahesh1600:RUYbGfimoTt7K5CZ@cluster0.8rfeoyy.mongodb.net/dhms
 apiVersion: v1
 kind: Service
 metadata:
