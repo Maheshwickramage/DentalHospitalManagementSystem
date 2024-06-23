@@ -30,21 +30,42 @@ pipeline {
         
         stage('Log into DockerHub') {
             steps {
-                
-                withCredentials([string(credentialsId: 'dockerhubPass', variable: 'dockerhubPassword')]) {
-                    sh 'docker login -u drashanamahesh -p ${dockerhubPassword}'
-                    
+                withCredentials([string(credentialsId: 'manoPass', variable: 'mano')]) {
+                    sh 'docker login -u drashanamahesh -p ${mano}'
                 }
-
             }
         }
+        
         stage('Upload Docker Images into dockerhub') {
             steps {
-               
-                    sh 'docker push drashanamahesh/react-app:latest'
-                    sh 'docker push drashanamahesh/node-app:latest'
+                sh 'docker push drashanamahesh/react-app:latest'
+                sh 'docker push drashanamahesh/node-app:latest'
+            }
+        }
+        
+        stage('Deploy to Minikube') {
+            agent {
+                label 'local-agent' // Use the label for your local machine agent
+            }
+            steps {
+                script {
+                    def minikubeStart = sh(script: 'minikube start --memory=2000mb', returnStatus: true)
+                    if (minikubeStart != 0) {
+                        error("Failed to start Minikube. Please check Minikube logs.")
+                    }
                     
-
+                    sh 'kubectl config use-context minikube'
+                    
+                    // Update Kubernetes manifests to use images from DockerHub
+                    sh 'sed -i "s|image: react-app:latest|image: drashanamahesh/react-app:latest|g" k8s/frontend-deployment.yaml'
+                    sh 'sed -i "s|image: node-app:latest|image: drashanamahesh/node-app:latest|g" k8s/backend-deployment.yaml'
+                    
+                    // Apply the Kubernetes manifests
+                    sh 'kubectl apply -f k8s/frontend-deployment.yaml'
+                    sh 'kubectl apply -f k8s/backend-deployment.yaml'
+                    sh 'kubectl apply -f k8s/frontend-service.yaml'
+                    sh 'kubectl apply -f k8s/backend-service.yaml'
+                }
             }
         }
     }
