@@ -16,7 +16,7 @@ COPY . .
 
 
 #expose the port the app runs in
-EXPOSE 8080
+EXPOSE 5000
 
 #command to run the application
 CMD ["node", "src/server.js"]
