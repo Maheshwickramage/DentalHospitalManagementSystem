@@ -10,7 +10,7 @@ const app = require('./app');
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGO_URI, {})
+  .connect(process.env.CONN_STR, {})
   .then(result => {
     console.log('db connected');
     
