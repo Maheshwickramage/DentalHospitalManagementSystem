@@ -21,7 +21,7 @@ spec:
             - name: PORT
               value: "5000"
             - name: CONN_STR
-              value: "$ATLAS_CONNECTION_STRING"
+              value: "mongodb+srv://darshanamahesh1600:9nm6xutfPnj70jeC@cluster0.8rfeoyy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 ---
 apiVersion: v1
 kind: Service
