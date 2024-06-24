@@ -17,9 +17,11 @@ spec:
         image: drashanamahesh/node-app:latest
         ports:
         - containerPort: 5000
-        envFrom:
-        - secretRef:
-            name: backend-env-secret
+        env: 
+            - name: PORT
+              value: "5000"
+            - name: CONN_STR
+              value: "$ATLAS_CONNECTION_STRING"
 ---
 apiVersion: v1
 kind: Service
